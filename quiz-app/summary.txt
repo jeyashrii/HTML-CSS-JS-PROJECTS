@@ -1,0 +1,31 @@
+
+In an interview, you want to give a clear, concise overview of how you'd approach building this quiz application. Here's a good way to summarize your process:
+
+1. Set up the basic HTML structure: We start by creating the necessary containers in HTML. We'll have:
+
+A section for the question.
+A container for the answer buttons.
+A Next button to move to the next question.
+This gives us a base to work with when updating content dynamically.
+
+2. Define the questions: In JavaScript, we define the quiz data in an array of objects. Each object holds a question and its associated answers. Every answer has two parts: the text to display and a correct boolean that indicates whether it’s the right answer.
+
+3. Start the quiz: When the quiz starts, we initialize a few key variables:
+
+currentQuestionIndex to track which question we are on.
+score to track the player's progress.
+We create a function startQuiz() to reset the quiz and display the first question.
+
+4. Display questions and answers: We need to dynamically show each question and its possible answers. For this:
+
+We use a showQuestion() function to update the HTML with the current question and generate buttons for each answer.
+Each button is created with a click event listener and a data-correct attribute (which tells us if it's the right answer).
+5. Handle answer selection: When a user selects an answer:
+
+The selectAnswer() function checks if the clicked answer is correct by comparing the data-correct value to "true".
+Based on the result, we apply a CSS class (correct or incorrect) to visually highlight the chosen answer.
+6. Reset and prepare for the next question: We reset the state of the quiz for each question by:
+
+Clearing old buttons with resetState().
+Hiding the "Next" button until an answer is selected, then revealing it to move to the next question.
+This structure allows us to dynamically create a quiz that updates the content based on user interaction and provides instant feedback on whether their answer is correct or not.
