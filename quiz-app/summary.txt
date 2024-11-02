@@ -1,31 +1,73 @@
 
-In an interview, you want to give a clear, concise overview of how you'd approach building this quiz application. Here's a good way to summarize your process:
+a question eleemnt 
+a div for answers each a buttona next button ,a function startQuiz()starts upon loading of the page
 
-1. Set up the basic HTML structure: We start by creating the necessary containers in HTML. We'll have:
+initialised variables to keep track of ,
+1.the index of current  question and answers set in the questions array,
+2.score
 
-A section for the question.
-A container for the answer buttons.
-A Next button to move to the next question.
-This gives us a base to work with when updating content dynamically.
 
-2. Define the questions: In JavaScript, we define the quiz data in an array of objects. Each object holds a question and its associated answers. Every answer has two parts: the text to display and a correct boolean that indicates whether it’s the right answer.
+when the quiz starts ,
+these values are initialised,question element is displayed based on the index from the array
+for each answer of the current question in the array,a button eleemnt is created and appended to the container element with its content from the array 
+and if the answer is correct ,its also given a datatset value based on the correct value
+and each button is given a click event selectAnswer()
 
-3. Start the quiz: When the quiz starts, we initialize a few key variables:
+when a answer is selected ,
+if its correct its given a class and score is incremented
+if its wrong another calss is given(not for all buttons only for the user selected one)
 
-currentQuestionIndex to track which question we are on.
-score to track the player's progress.
-We create a function startQuiz() to reset the quiz and display the first question.
+if user has selected a wrong answer we have to display the right one so,
+create an array of the children elements of the button container loop through it ,
+if dataset.correct=true make it green ,or else leave it ,no need to highlight the wrong ones
+disable all buttons  now
+make the next button enable(block)
 
-4. Display questions and answers: We need to dynamically show each question and its possible answers. For this:
+now when next button is clicked,
+if there are still more questions,execute handleNext()
+if this is the lastQuestion,execute showScore()
 
-We use a showQuestion() function to update the HTML with the current question and generate buttons for each answer.
-Each button is created with a click event listener and a data-correct attribute (which tells us if it's the right answer).
-5. Handle answer selection: When a user selects an answer:
+index starts from 0
+ur in 1st question index 0,click next condition pass so handleNext will increse index to 1 ,displays the 2nd question,
+NOW IN 2ND QUESTION INDEX IS 1,CLICK NEXT CONDITION PASS(I=1<4) ,so handlenext() index is now 2 3rd question displayed,
+now in 3rd questiion ,index is 2,next,condition pass,handleNext,index is 3, 4th question displayed,
+now in 4th question ,index is 3,next,condition pass,handlenext,index inc,index is 4 condition fail,so score is shown
 
-The selectAnswer() function checks if the clicked answer is correct by comparing the data-correct value to "true".
-Based on the result, we apply a CSS class (correct or incorrect) to visually highlight the chosen answer.
-6. Reset and prepare for the next question: We reset the state of the quiz for each question by:
+Quiz Start
+|
+|-- Current Index: 0 (First Question)
+|   |-- Question: "Which is the largest animal in the world?"
+|   |-- Click "Next"
+|   |   |-- Condition: 0 < 3 (True)
+|   |   |-- Call: handleNext()
+|   |   |-- Increment Index: 1
+|   |
+|-- Current Index: 1 (Second Question)
+|   |-- Question: "Which is the smallest city in the world?"
+|   |-- Click "Next"
+|   |   |-- Condition: 1 < 3 (True)
+|   |   |-- Call: handleNext()
+|   |   |-- Increment Index: 2
+|   |
+|-- Current Index: 2 (Third Question)
+|   |-- Question: "Which is the smallest continent in the world?"
+|   |-- Click "Next"
+|   |   |-- Condition: 2 < 3 (True)
+|   |   |-- Call: handleNext()
+|   |   |-- Increment Index: 3
+|   |
+|-- Current Index: 3 (Fourth Question)
+|   |-- Question: "Which is the largest desert in the world?"
+|   |-- Click "Next"
+|   |   |-- Condition: 3 < 3 (False)
+|   |   |-- Call: showScore()
+|   |   |-- Display: "You scored X out of 4 questions."
 
-Clearing old buttons with resetState().
-Hiding the "Next" button until an answer is selected, then revealing it to move to the next question.
-This structure allows us to dynamically create a quiz that updates the content based on user interaction and provides instant feedback on whether their answer is correct or not.
+
+
+
+
+
+
+
+
